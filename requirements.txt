@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+streamlit
+pymupdf
+python-docx
+sentence-transformers
+chromadb
+pydantic
+python-dotenv
