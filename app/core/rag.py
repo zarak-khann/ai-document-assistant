@@ -13,8 +13,8 @@ class RAGPipeline:
         self.retriever = retriever
         self.llm = llm
 
-    def answer(self, question: str, n_results: int = 3) -> str:
-        """Answer a question using retrieved document context."""
+    def answer(self, question: str, n_results: int = 3) -> dict:
+        """Answer a question and return the answer with its sources."""
         if not question.strip():
             raise ValueError("Question cannot be empty")
 
@@ -24,9 +24,13 @@ class RAGPipeline:
         )
 
         documents = results.get("documents", [[]])[0]
+        metadatas = results.get("metadatas", [[]])[0]
 
         if not documents:
-            return "I could not find relevant information in the documents."
+            return {
+                "answer": "I could not find relevant information in the documents.",
+                "sources": [],
+            }
 
         context = "\n\n".join(documents)
 
@@ -44,4 +48,9 @@ Question:
 Answer:
 """.strip()
 
-        return self.llm.generate(prompt)
+        answer = self.llm.generate(prompt)
+
+        return {
+            "answer": answer,
+            "sources": metadatas,
+        }

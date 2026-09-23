@@ -29,7 +29,8 @@ def test_rag_pipeline():
 
     answer = pipeline.answer("What is Python?", n_results=2)
 
-    assert answer == "Python is a programming language."
+    assert answer["answer"] == "Python is a programming language."
+    assert answer["sources"] == []
 
 
 def test_empty_question():

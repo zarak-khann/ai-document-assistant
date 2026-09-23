@@ -1,8 +1,13 @@
 from pathlib import Path
 
 from fastapi import APIRouter, UploadFile, File, HTTPException
+from pydantic import BaseModel
 
 from app.ingestion.pipeline import IngestionPipeline
+from app.core.llm import LLM
+from app.core.rag import RAGPipeline
+from app.core.retriever import Retriever
+
 
 router = APIRouter()
 
@@ -39,20 +44,13 @@ async def upload_document(file: UploadFile = File(...)):
     }
 
 
-
-from pydantic import BaseModel
-
-from app.core.llm import LLM
-from app.core.rag import RAGPipeline
-from app.core.retriever import Retriever
-
-
 class QueryRequest(BaseModel):
     question: str
 
 
 retriever = Retriever()
 llm = LLM()
+
 rag = RAGPipeline(
     retriever=retriever,
     llm=llm,
@@ -61,9 +59,10 @@ rag = RAGPipeline(
 
 @router.post("/query")
 async def query_document(request: QueryRequest):
-    answer = rag.answer(request.question)
+    result = rag.answer(request.question)
 
     return {
         "question": request.question,
-        "answer": answer,
+        "answer": result["answer"],
+        "sources": result["sources"],
     }
