@@ -1,4 +1,5 @@
 from pathlib import Path
+from zipfile import BadZipFile
 
 from fastapi import APIRouter, UploadFile, File, HTTPException
 from pydantic import BaseModel
@@ -35,7 +36,13 @@ async def upload_document(file: UploadFile = File(...)):
     content = await file.read()
     file_path.write_bytes(content)
 
-    chunk_count = pipeline.ingest(str(file_path))
+    try:
+        chunk_count = pipeline.ingest(str(file_path))
+    except (ValueError, RuntimeError, BadZipFile) as error:
+       raise HTTPException(
+        status_code=400,
+        detail=f"Document processing failed: {error}",
+    )
 
     return {
         "filename": file.filename,

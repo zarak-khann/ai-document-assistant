@@ -4,4 +4,6 @@ __pycache__/
 .env
 data/uploads/
 data/chroma/
+data/test_chroma/
+.pytest_cache/
 .vscode/

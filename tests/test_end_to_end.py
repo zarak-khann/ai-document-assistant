@@ -33,5 +33,9 @@ def test_end_to_end():
         "What is this document about?"
     )
 
-    assert isinstance(answer, str)
-    assert answer.strip()
+    assert isinstance(answer, dict)
+    assert "answer" in answer
+    assert "sources" in answer
+    assert isinstance(answer["answer"], str)
+    assert isinstance(answer["sources"], list)
+    assert answer["answer"].strip()
