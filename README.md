@@ -17,7 +17,7 @@ The application uses Retrieval-Augmented Generation (RAG) to retrieve relevant d
 * FastAPI backend
 * Streamlit user interface
 * Automated tests with pytest
-* Docker support
+ 
 
 ## Architecture
 
@@ -86,7 +86,7 @@ Generate Answer
 * Ollama
 * Qwen 2.5 3B
 * Pytest
-* Docker
+
 
 ## Project Structure
 
@@ -215,7 +215,7 @@ Accepts a question and returns an answer generated from retrieved document conte
 
 * Scanned/image-only PDFs are not processed with OCR.
 * The application currently uses a shared vector collection.
-* Ollama must be installed locally when running without Docker.
+* Ollama must be installed locally to run the LLM.
 * The project is designed as a practical learning project rather than a production-ready system.
 
 ## Purpose
@@ -231,6 +231,6 @@ This project was built as a practical implementation of concepts including:
 * REST APIs
 * Streamlit applications
 * Automated testing
-* Docker
+
 
 The goal was to connect these concepts into one working AI application rather than build a highly complex production system.
