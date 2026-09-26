@@ -4,6 +4,12 @@ An AI-powered document assistant that allows users to upload PDF, DOCX, and TXT 
 
 The application uses Retrieval-Augmented Generation (RAG) to retrieve relevant document sections before generating an answer with a local LLM.
 
+## Demo
+
+### Main Interface
+
+![Main Interface](project-screenshot.png),(project-screenshot2.png)
+
 ## Features
 
 * Upload PDF, DOCX, and TXT documents
