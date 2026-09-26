@@ -8,7 +8,9 @@ The application uses Retrieval-Augmented Generation (RAG) to retrieve relevant d
 
 ### Main Interface
 
-![Main Interface](project-screenshot.png),(project-screenshot2.png)
+![Main Interface](project-screenshot.png)
+![Main Interface - Continued](project-screenshot2.png)
+
 
 ## Features
 
